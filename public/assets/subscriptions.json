@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Netflix",
+        "price": 29.90,
+        "dueDate": "2024-05-01",
+        "frequency": "Mensal"
+    },
+    {
+        "name": "Spotify",
+        "price": 19.90,
+        "dueDate": "2024-05-15",
+        "frequency": "Mensal"
+    },
+    {
+        "name": "Amazon Prime",
+        "price": 14.90,
+        "dueDate": "2024-05-20",
+        "frequency": "Mensal"
+    }
+]
