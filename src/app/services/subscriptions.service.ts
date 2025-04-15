@@ -8,7 +8,7 @@ import { delay, first } from 'rxjs';
 })
 export class SubscriptionsService {
 
-  private readonly API_URL = ('assets/subscriptions.json')
+  private readonly API_URL = ('api/subscriptions')
   constructor(private httpClient: HttpClient) { }
 
   findAll() {
