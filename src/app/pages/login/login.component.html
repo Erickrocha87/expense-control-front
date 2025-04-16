@@ -1,0 +1,46 @@
+<main>
+    <section class="form-section">
+
+        <div class="container-centralized">
+            <div class="logo-container flex justify-center items-center">
+                <img src="assets/images/logo.png" alt="Imagem que vai ficar no logo">
+            </div>
+
+            <div class="text-container">
+                <p>Fique no controle com o PayLoop</p>
+            </div>
+
+            <div class="form-container">
+                <form [formGroup]="loginForm">
+
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Digite seu email" formControlName="email">
+
+                    <label for="password">Senha</label>
+
+                    <div class="password-container">
+                        <input type="password" placeholder="Digite sua senha" formControlName="password">
+                        <span class="forgot-password">Esqueceu sua senha?</span>
+                    </div>
+                    
+                </form>
+            </div>
+
+            <div class="button-container gap-1 flex flex-col items-center">
+                <button class="login-button" (click)="onSubmit()">Login</button>
+                <div class="divider">
+                    <div></div>
+                    <span> ou </span>
+                    <div></div>
+                </div>
+                
+                <button class="register-button">Cadastrar</button>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="main-section">
+        <img src="assets/images/background-login.png" alt="Imagem que vai ficar no background">
+    </section>
+</main>
