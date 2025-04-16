@@ -17,4 +17,8 @@ export const routes: Routes = [
         path: 'home',
         component: HomeComponent
     },
+    {
+        path: 'cadastro',
+        loadComponent: () => import('./pages/sing-up/sing-up.component').then(c => c.SingUpComponent)
+    }
 ];
