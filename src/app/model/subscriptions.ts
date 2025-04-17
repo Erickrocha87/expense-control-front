@@ -1,5 +1,5 @@
 export interface Subscriptions {
-    name: string;
+    serviceName: string;
     price: number;
     dueDate: Date;
     frequency: string;

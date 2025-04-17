@@ -1,25 +1,29 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg table-container">
     <div *ngIf="subscriptions$ | async as subscriptions; else loading">
-    <table class="w-full text-sm text-left text-gray-700">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+    <table class="w-full text-sm text-left text-gray-700 table-service" >
+      <thead class="text-xs text-gray-700 uppercase">
         <tr>
           <th scope="col" class="px-6 py-3">Nome da assinatura</th>
           <th scope="col" class="px-6 py-3">Preço</th>
           <th scope="col" class="px-6 py-3">Data de vencimento</th>
           <th scope="col" class="px-6 py-3">Frequência de pagamento</th>
           <th scope="col" class="px-6 py-3">Editar</th>
+          <th scope="col" class="px-6 py-3">Excluir</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let subscription of subscriptions$ | async" class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-            {{ subscription.name }}
+            {{ subscription.serviceName }}
           </th>
           <td class="px-6 py-4">{{ subscription.price | currency: 'BRL' }}</td>
           <td class="px-6 py-4">{{ subscription.dueDate | date: 'dd/MM/yyyy' }}</td>
           <td class="px-6 py-4">{{ subscription.frequency }}</td>
           <td class="px-6 py-4">
             <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
+          </td>
+          <td class="px-6 py-4">
+            <a href="#" class="font-medium text-blue-600 hover:underline text-red-600 ">Excluir</a>
           </td>
         </tr>
       </tbody>

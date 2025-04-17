@@ -1,3 +1,31 @@
+@use '../../../styles/variables.scss';
+
 .loading-spinner {
     background: rgba(0, 0, 0, 0.15);
+}
+
+.table-container {
+    padding: 5rem;
+    
+    
+    .table-service{
+        border: 2px solid variables.$verdinho-escuro;
+        border-radius: 0.5rem;
+    }
+
+    thead{
+        background-color: variables.$verdinho-escuro;
+    }
+
+    
+    th{
+        padding: 1rem 0;
+        text-align: center;
+    }
+    td{
+        padding: 1rem 0;
+        text-align: center;
+    }
+    
+    
 }

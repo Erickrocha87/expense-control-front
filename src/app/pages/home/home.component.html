@@ -1,4 +1,15 @@
-<div class="flex flex-col mt-10">
-    <app-table-service (error)="showModalError = true"></app-table-service>
-    <app-dialog-error [isOpen]="showModalError" (closeModal)="onCloseModal()"></app-dialog-error>
-</div>
+<header class="header-container">
+    <img src="" alt="">
+</header>
+
+<main>
+    <div class="flex flex-col texto-container">
+        <p>Assinaturas</p>
+    </div>
+
+    <div class="flex flex-col mt-10">
+        <app-table-service (error)="showModalError = true"></app-table-service>
+        <app-dialog-error [isOpen]="showModalError" (closeModal)="onCloseModal()"></app-dialog-error>
+    </div>
+    
+</main>

@@ -8,13 +8,12 @@ import { delay, first } from 'rxjs';
 })
 export class SubscriptionsService {
 
-  private readonly API_URL = ('api/subscriptions')
+  private readonly API_URL = ('http://localhost:8080/api/subscriptions')
   constructor(private httpClient: HttpClient) { }
 
   findAll() {
     return this.httpClient.get<Subscriptions[]>(this.API_URL).pipe(
       first(),
-      delay(5000)
     )
   }
 }

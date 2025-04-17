@@ -30,6 +30,7 @@ export class TableServiceComponent {
         return of([]);
       })
     );
+    console.log(this.subscriptions$)
   }
 
   closeModalError() {
