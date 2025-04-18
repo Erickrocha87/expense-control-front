@@ -5,18 +5,12 @@
 }
 
 .table-container {
-    padding: 5rem;
+    margin-top: 3rem;
     
     
     .table-service{
-        border: 2px solid variables.$verdinho-escuro;
-        border-radius: 0.5rem;
+       border: none;
     }
-
-    thead{
-        background-color: variables.$verdinho-escuro;
-    }
-
     
     th{
         padding: 1rem 0;

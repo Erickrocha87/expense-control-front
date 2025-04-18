@@ -16,4 +16,10 @@ export class SubscriptionsService {
       first(),
     )
   }
+
+  delete(id: number) {
+    return this.httpClient.delete(`${this.API_URL}/${id}`).pipe(
+      first(),
+    )
+  }
 }

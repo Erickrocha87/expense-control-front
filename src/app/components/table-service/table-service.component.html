@@ -23,7 +23,7 @@
             <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
           </td>
           <td class="px-6 py-4">
-            <a href="#" class="font-medium text-blue-600 hover:underline text-red-600 ">Excluir</a>
+            <a href="#" (click)="$event.preventDefault(); confirmDelete(subscription.id)" class="font-medium text-blue-600 hover:underline text-red-600">Excluir</a>
           </td>
         </tr>
       </tbody>

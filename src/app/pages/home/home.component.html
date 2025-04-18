@@ -1,15 +1,64 @@
-<header class="header-container">
-    <img src="" alt="">
-</header>
+  <div class="container-home-wrapper">
+    <div class="container-home ">
+            <main class="flex flex-row container-home-main">
 
-<main>
-    <div class="flex flex-col texto-container">
-        <p>Assinaturas</p>
-    </div>
+                <section class="menu-container">
 
-    <div class="flex flex-col mt-10">
-        <app-table-service (error)="showModalError = true"></app-table-service>
-        <app-dialog-error [isOpen]="showModalError" (closeModal)="onCloseModal()"></app-dialog-error>
+                    <div class="menu-container-wrapper">
+                        <div class="logo-container">
+                    <img src="assets/images/header.png" alt="Logo PayLoop" />
+                        </div>
+                    <h3 class="menu-title">Menu</h3>
+                
+                    <div class="menu-item">
+                        <p>mexer aqui</p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <p>mexer aqui</p>
+                    </div>
+                
+                    <div class="menu-item">
+                        <p>mexer aqui</p>
+                    </div>
+                    </div>
+                </section>
+                
+
+                <section class="main-container">
+                    <div class="flex flex-col texto-container">
+                        <p class="menu-title">Assinaturas</p>
+                    </div>
+
+                    <div class=" ver-nome flex flex-row gap-4 justify-between">
+                        <div class="flex flex-col">
+                            <p>Pagamentos Pendentes</p>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <p>Pagamentos em Dia </p>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <p>Total de assinaturas</p>
+                            <p>{{totalSubscriptions}}</p>
+                        </div>
+
+                        <div class="flex flex-col">
+                            <p>Total Mensal</p>
+                            <p>{{totalPrice | currency: 'BRL'}}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <app-table-service 
+                            (error)="showModalError = true"
+                            (totalPriceChange)="onTotalPriceChange($event)"
+                            (totalSubscriptions)="onTotalSubscriptionsChange($event)">
+                        </app-table-service>
+                        <app-dialog-error [isOpen]="showModalError" (closeModal)="onCloseModal()"></app-dialog-error>
+                    </div>
+                </section>    
+            </main>
     </div>
-    
-</main>
+</div>
