@@ -14,12 +14,18 @@ export class SubscriptionsService {
   findAll() {
     return this.httpClient.get<Subscriptions[]>(this.API_URL).pipe(
       first(),
-    )
+    );
   }
 
   delete(id: number) {
     return this.httpClient.delete(`${this.API_URL}/${id}`).pipe(
       first(),
-    )
+    );
+  }
+
+  create(subscription: Subscriptions) {
+    return this.httpClient.post<Subscriptions>(this.API_URL, subscription).pipe(
+      first(),
+    );
   }
 }

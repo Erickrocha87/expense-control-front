@@ -11,15 +11,16 @@
                     <h3 class="menu-title">Menu</h3>
                 
                     <div class="menu-item">
-                        <p>mexer aqui</p>
-                    </div>
-                
-                    <div class="menu-item">
-                        <p>mexer aqui</p>
-                    </div>
-                
-                    <div class="menu-item">
-                        <p>mexer aqui</p>
+                          <div class="form-container">
+                            <button
+                            class="cursor-pointer modal-form text-white focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                            type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg> 
+                            Perfil do Usuário
+                            </button>
+                        </div>
                     </div>
                     </div>
                 </section>
@@ -31,22 +32,32 @@
                     </div>
 
                     <div class=" ver-nome flex flex-row gap-4 justify-between">
-                        <div class="flex flex-col">
-                            <p>Pagamentos Pendentes</p>
+
+                        <div class="form-container">
+                            <button
+                            (click)="openFormModal()"
+                            class="cursor-pointer modal-form text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
+                            type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                            </svg>
+                            Criar Assinatura
+                            </button>
+                            <app-form-subscriptions
+                                [isOpen]="showFormSubs"
+                                (close)="closeFormModal()"
+                                (subscriptionCreated)="onSubscriptionCreated()"
+                            ></app-form-subscriptions>
                         </div>
 
-                        <div class="flex flex-col">
-                            <p>Pagamentos em Dia </p>
+                        <div class="ver-nome-2 flex flex-col">
+                            <p class="text-2xl">Total de Assinaturas</p>
+                            <p class="text-2xl">{{totalSubscriptions}}</p>
                         </div>
 
-                        <div class="flex flex-col">
-                            <p>Total de assinaturas</p>
-                            <p>{{totalSubscriptions}}</p>
-                        </div>
-
-                        <div class="flex flex-col">
-                            <p>Total Mensal</p>
-                            <p>{{totalPrice | currency: 'BRL'}}</p>
+                        <div class="ver-nome-2 flex flex-col">
+                            <p class="text-2xl">Total Mensal</p>
+                            <p class="text-2xl">{{totalPrice | currency: 'BRL'}}</p>
                         </div>
                     </div>
 

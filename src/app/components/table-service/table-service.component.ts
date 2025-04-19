@@ -3,10 +3,10 @@ import { Subscriptions } from '../../model/subscriptions';
 import { CommonModule } from '@angular/common';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 import { catchError, Observable, of, map } from 'rxjs';
-
+import { FormSubscriptionsComponent } from '../form-subscriptions/form-subscriptions.component';
 @Component({
   selector: 'app-table-service',
-  imports: [CommonModule],
+  imports: [CommonModule, FormSubscriptionsComponent],
   templateUrl: './table-service.component.html',
   styleUrl: './table-service.component.scss'
 })
@@ -16,22 +16,25 @@ export class TableServiceComponent {
   @Output() totalSubscriptions = new EventEmitter<number>();
 
   showModalError = false;
-  
-  subscriptions$: Observable<Subscriptions[]>;
+  showFormSubs = false;
+
+  subscriptions$: Observable<Subscriptions[]> = of([]);
 
   // subscriptionsService: SubscriptionsService;
 
   constructor(private subscriptionsService: SubscriptionsService) {
-    // this.subscriptionsService = new SubscriptionsService();
+    this.loadSubscriptions();
+  }
+
+  loadSubscriptions() {
     this.subscriptions$ = this.subscriptionsService.findAll().pipe(
-      catchError(error =>{
+      catchError(error => {
         this.showModalError = true;
         this.error.emit();
         console.log(error);
         return of([]);
       })
     );
-
     this.getTotalPrice();
     this.getTotalSubscriptions();
   }
@@ -49,24 +52,30 @@ export class TableServiceComponent {
   delete(id: number) {
     this.subscriptionsService.delete(id).subscribe({
       next: () => {
-        this.subscriptions$ = this.subscriptionsService.findAll();
-        this.getTotalPrice();
-        this.getTotalSubscriptions();
+        this.loadSubscriptions();
       },
       error: () => this.showModalError = true
     });
   }
 
-  getTotalPrice(){
+  getTotalPrice() {
     this.subscriptions$.pipe(
       map(subscriptions => subscriptions.reduce((acc, sub) => acc + sub.price, 0))
     ).subscribe(totalPrice => this.totalPriceChange.emit(totalPrice));
   }
 
-  getTotalSubscriptions(){
+  getTotalSubscriptions() {
     this.subscriptions$.pipe(
       map(subscriptions => subscriptions.length)
     ).subscribe(totalSubscriptions => this.totalSubscriptions.emit(totalSubscriptions));
+  }
+
+  openFormModal() {
+    this.showFormSubs = true;
+  }
+
+  closeFormModal() {
+    this.showFormSubs = false;
   }
 }
 

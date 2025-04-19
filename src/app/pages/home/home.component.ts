@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DialogErrorComponent } from '../../components/dialog-error/dialog-error.component';
 import { TableServiceComponent } from '../../components/table-service/table-service.component';
 import { CommonModule } from '@angular/common';
+import { FormSubscriptionsComponent } from '../../components/form-subscriptions/form-subscriptions.component';
 
 @Component({
   selector: 'app-home',
-  imports: [TableServiceComponent, DialogErrorComponent, CommonModule],
+  imports: [TableServiceComponent, DialogErrorComponent, CommonModule, FormSubscriptionsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  @ViewChild(TableServiceComponent) tableComponent!: TableServiceComponent;
+  
   showModalError = false;
   totalPrice: number = 0;
   totalSubscriptions: number = 0;
-  
+  isFormOpen = false;
+  showFormSubs = false;
+
   onCloseModal() {
     this.showModalError = false;
   }
@@ -24,5 +29,21 @@ export class HomeComponent {
 
   onTotalSubscriptionsChange(total: number) {
     this.totalSubscriptions = total;
+  }
+
+  openForm(){
+    this.isFormOpen = true;
+  }
+
+  openFormModal() {
+    this.showFormSubs = true;
+  }
+
+  closeFormModal() {
+    this.showFormSubs = false;
+  }
+
+  onSubscriptionCreated() {
+    this.tableComponent.loadSubscriptions();
   }
 }

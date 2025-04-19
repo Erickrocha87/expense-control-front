@@ -78,7 +78,34 @@
 }
 
 .ver-nome{
+    padding: 2.5rem 3rem 2rem 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-container{
+    display: flex;
+    align-items: center;
+}
+
+.modal-form{
+    padding: 1rem;
+    border-radius: 1.5rem;
+    white-space: nowrap;
+    background-color: variables.$secondary-color;
+    font-weight: 500px;
+
+}
+
+.p-container{
     font-size: 1.5rem;
     font-weight: 400;
-    padding: 2.5rem 3rem 2rem 3rem;
+}
+
+.ver-nome-2{
+    background-color: variables.$secondary-color; 
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+    width: 15.2rem;
 }
