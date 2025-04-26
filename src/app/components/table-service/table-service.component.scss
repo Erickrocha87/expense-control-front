@@ -21,3 +21,24 @@
         text-align: center;
     }
 }
+.form-container{
+    display: flex;
+    align-items: center;
+}
+
+.modal-form{
+  padding: 1rem;
+  border-radius: 1.5rem;
+  white-space: nowrap;
+  background-color: variables.$secondary-color;
+  font-weight: 500px;
+}
+
+.status-container{
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.7rem;
+    height: 2rem;
+}

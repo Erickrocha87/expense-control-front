@@ -24,7 +24,15 @@ export class SubscriptionsService {
   }
 
   create(subscription: Subscriptions) {
+    console.log(subscription)
     return this.httpClient.post<Subscriptions>(this.API_URL, subscription).pipe(
+      first(),
+    );
+  }
+
+  update(id: number, subscription: Subscriptions ){
+    console.log(subscription)
+    return this.httpClient.put<Subscriptions>(`${this.API_URL}/${id}`, subscription).pipe(
       first(),
     );
   }

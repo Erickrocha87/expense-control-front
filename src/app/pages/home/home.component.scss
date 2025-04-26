@@ -5,10 +5,6 @@
     flex: 0.25;
     background-color: variables.$secondary-color;
     color: white;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
 .main-container{
@@ -27,10 +23,8 @@
 }
 
 .container-home{
-    min-height: 92vh;
+    min-height: 100vh;
     width: 100%;
-    margin: 0.5rem 2rem;
-    border-radius: 1rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
@@ -70,6 +64,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: variables.$secondary-color;
+    width: 100%;
 }
 
 
@@ -94,7 +89,6 @@
     white-space: nowrap;
     background-color: variables.$secondary-color;
     font-weight: 500px;
-
 }
 
 .p-container{
@@ -102,10 +96,34 @@
     font-weight: 400;
 }
 
-.ver-nome-2{
+.card-container{
     background-color: variables.$secondary-color; 
-    padding: 1rem;
-    border-radius: 1rem;
+    padding: 2rem 2rem 2rem 1.5rem;
+    border-radius: 0.5rem;
     color: white;
-    width: 15.2rem;
+    width: 22rem;
+}
+
+.create-modal ::ng-deep .bg-\[rgba\(0\,0\,0\,0\.1\)\] {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.svg-card{
+    border: 1px solid white;
+    width: 2.5rem;
+    height: 2.5rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+}
+
+.button-container{
+    padding: 1rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.menu-left{
+    &:hover{
+        background-color: #09351b ;
+     }
 }

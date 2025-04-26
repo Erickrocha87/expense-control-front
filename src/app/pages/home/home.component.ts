@@ -12,12 +12,15 @@ import { FormSubscriptionsComponent } from '../../components/form-subscriptions/
 })
 export class HomeComponent {
   @ViewChild(TableServiceComponent) tableComponent!: TableServiceComponent;
+  // @ViewChild(FormSubscriptionsComponent) formSubscription!: FormSubscriptionsComponent;
   
+  headerText = "Crie uma nova assinatura"
   showModalError = false;
   totalPrice: number = 0;
   totalSubscriptions: number = 0;
   isFormOpen = false;
   showFormSubs = false;
+  resetForm = false;
 
   onCloseModal() {
     this.showModalError = false;
@@ -46,4 +49,9 @@ export class HomeComponent {
   onSubscriptionCreated() {
     this.tableComponent.loadSubscriptions();
   }
+
+  // onResetForm(){
+  //   this.formSubscription.onResetForm();
+  // }
+
 }

@@ -4,4 +4,5 @@ export interface Subscriptions {
     price: number;
     dueDate: Date;
     frequency: string;
+    status: string;
 }

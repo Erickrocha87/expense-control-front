@@ -6,6 +6,7 @@
           <th scope="col" class="px-6 py-3">Nome da assinatura</th>
           <th scope="col" class="px-6 py-3">Preço</th>
           <th scope="col" class="px-6 py-3">Data de vencimento</th>
+          <th scope="col" class="px-6 py-3">Status</th>
           <th scope="col" class="px-6 py-3">Frequência de pagamento</th>
           <th scope="col" class="px-6 py-3">Editar</th>
           <th scope="col" class="px-6 py-3">Excluir</th>
@@ -18,19 +19,26 @@
           </th>
           <td class="px-6 py-4">{{ subscription.price | currency: 'BRL' }}</td>
           <td class="px-6 py-4">{{ subscription.dueDate | date: 'dd/MM/yyyy' }}</td>
+          <div class="status-container" [ngClass]="{'bg-green-200': subscription.status == 'Pago' , 'bg-red-200': subscription.status == 'Vencido' , 'bg-yellow-200': subscription.status == 'Pendente'}">
+            <td class="px-6 py-4" >{{ subscription.status }}</td>
+          </div>
           <td class="px-6 py-4">{{ subscription.frequency }}</td>
           <td class="px-6 py-4">
 
             <div class="flex justify-center items-center">
-              <button type="button" (click)="openFormModal()" class="font-medium cursor-pointer  text-black-900 flex rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <button type="button" (click)="openFormModal(subscription)" class="font-medium cursor-pointer  text-black-900 flex rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
               </svg>
               </button>
-
               <app-form-subscriptions
-                  [isOpen]="showFormSubs"
-                  (close)="closeFormModal()"
-              ></app-form-subscriptions>
+                [isOpen]="showFormSubs"
+                (close)="closeFormModal()"
+                (submit)="update(subscription.id, $event)"
+                [subscriptionToEdit]="editingSubscription"
+                [headerText]="headerText"
+                [isEditing]="isEditing"
+
+            ></app-form-subscriptions>
             </div>
 
           </td>
@@ -43,6 +51,7 @@
         </tr>
       </tbody>
     </table>
+
   </div>
 
 <ng-template #loading>

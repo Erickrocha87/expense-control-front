@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 import { catchError, Observable, of, map } from 'rxjs';
 import { FormSubscriptionsComponent } from '../form-subscriptions/form-subscriptions.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-table-service',
   imports: [CommonModule, FormSubscriptionsComponent],
@@ -15,6 +17,10 @@ export class TableServiceComponent {
   @Output() totalPriceChange = new EventEmitter<number>();
   @Output() totalSubscriptions = new EventEmitter<number>();
 
+  editingSubscription: Subscriptions | null = null;
+  isEditing: boolean = false;
+
+  headerText = "Editar assinatura"
   showModalError = false;
   showFormSubs = false;
 
@@ -58,6 +64,16 @@ export class TableServiceComponent {
     });
   }
 
+  update(id: number, subscription: Subscriptions) {
+    console.log(subscription)
+    this.subscriptionsService.update(id, subscription).subscribe({
+      next: () => {
+        this.loadSubscriptions();
+      },
+      error: () => this.showModalError = true
+    });
+  }
+
   getTotalPrice() {
     this.subscriptions$.pipe(
       map(subscriptions => subscriptions.reduce((acc, sub) => acc + sub.price, 0))
@@ -70,13 +86,15 @@ export class TableServiceComponent {
     ).subscribe(totalSubscriptions => this.totalSubscriptions.emit(totalSubscriptions));
   }
 
-  openFormModal() {
+  openFormModal(subscription?: Subscriptions) {
+    this.editingSubscription = subscription ?? null;
     this.showFormSubs = true;
+    this.isEditing = true;
   }
 
   closeFormModal() {
     this.showFormSubs = false;
-  }
+  }  
 }
 
  
