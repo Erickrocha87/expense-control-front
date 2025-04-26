@@ -56,11 +56,10 @@ export class FormSubscriptionsComponent {
   onSubmit() {
     if (this.formSubscription.valid) {
       if(this.subscription?.id){
-        console.log('FormGroup', this.formSubscription.value)
-        console.log(this.subscription.id)
+        console.log('Form enviado:', this.formSubscription.value);
         this.subscriptionsService.update(this.subscription.id, this.formSubscription.value).subscribe({
           next: () => {
-            this.submit.emit();
+            this.submit.emit(this.formSubscription.value);
             this.closeModal();
           },
         });
@@ -68,7 +67,7 @@ export class FormSubscriptionsComponent {
          console.log(this.formSubscription.value)
         this.subscriptionsService.create(this.formSubscription.value).subscribe({
           next: () => {
-            this.submit.emit();
+            this.submit.emit(this.formSubscription.value);
             this.closeModal();
           },
           error: (error) => {

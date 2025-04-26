@@ -34,6 +34,7 @@ export class TableServiceComponent {
 
   loadSubscriptions() {
     this.subscriptions$ = this.subscriptionsService.findAll().pipe(
+      // map(subscriptions => subscriptions.sort((a, b) => a.serviceName.localeCompare(b.serviceName))),
       catchError(error => {
         this.showModalError = true;
         this.error.emit();
@@ -66,6 +67,8 @@ export class TableServiceComponent {
 
   update(id: number, subscription: Subscriptions) {
     console.log(subscription)
+    console.log('Lista antes:', this.subscriptions$);
+    console.log('Editando:', this.editingSubscription);
     this.subscriptionsService.update(id, subscription).subscribe({
       next: () => {
         this.loadSubscriptions();
@@ -87,7 +90,8 @@ export class TableServiceComponent {
   }
 
   openFormModal(subscription?: Subscriptions) {
-    this.editingSubscription = subscription ?? null;
+    // this.editingSubscription = subscription ?? null;
+    this.editingSubscription = { ...subscription } as Subscriptions;
     this.showFormSubs = true;
     this.isEditing = true;
   }
