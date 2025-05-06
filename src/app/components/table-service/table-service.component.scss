@@ -5,15 +5,19 @@
 }
 
 .table-container {
-    margin-top: 3rem;
-    
-    
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 33.5rem;
+
     .table-service{
        border: none;
+       width: 100%;
+       
     }
     
     th{
-        padding: 1rem 0;
+        padding: 1rem 1.5rem;
         text-align: center;
     }
     td{
@@ -35,10 +39,43 @@
 }
 
 .status-container{
-    margin-top: 0.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.7rem;
-    height: 2rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.7rem;
+        width: 6rem;  
+        height: 2rem; 
+        margin: 0.8rem auto; 
+      
 }
+
+.page-container{
+    padding: 0rem 3rem;
+    justify-content: end;
+    
+    button{
+        cursor: pointer
+    }
+}
+
+.button-page{
+    width: 2.2rem;
+}
+
+.pagination-container{
+    flex: 0 0 auto;      
+    padding: 1rem;
+    background: white;
+    border: none;
+}
+
+.table-wrapper {
+    flex: 1 1 auto;       
+    overflow-y: auto;     //caso precisar de scroll - somente se quebrar
+    overflow-x: hidden;   
+  }
+
+  .button-previus-next{
+    padding: 0.5rem;
+  }

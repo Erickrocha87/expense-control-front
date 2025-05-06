@@ -1,5 +1,8 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg table-container">
-    <div *ngIf="subscriptions$ | async as subscriptions; else loading">
+
+
+
+    <div *ngIf="subscriptions$ | async as subscriptions; else loading" class="table-wrapper">
     <table class="w-full text-sm text-left text-gray-700 table-service" >
       <thead class="text-xs text-gray-700 uppercase">
         <tr>
@@ -13,14 +16,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subscription of subscriptions$ | async" class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+        <tr *ngFor="let subscription of subscriptions" class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
           <th scope="row" class="px-6 py-4 font-normal text-gray-900 whitespace-nowrap">
             {{ subscription.serviceName }}
           </th>
           <td class="px-6 py-4">{{ subscription.price | currency: 'BRL' }}</td>
           <td class="px-6 py-4">{{ subscription.dueDate | date: 'dd/MM/yyyy' }}</td>
-          <div class="status-container" [ngClass]="{'bg-green-200': subscription.status == 'Pago' , 'bg-red-200': subscription.status == 'Vencido' , 'bg-yellow-200': subscription.status == 'Pendente'}">
-            <td class="px-6 py-4" >{{ subscription.status }}</td>
+          <div class="" >
+            <td class=" status-container px-6 py-4" [ngClass]="{
+              'bg-green-200': subscription.status == 'Pago',
+              'bg-red-200': subscription.status == 'Vencido',
+              'bg-yellow-200': subscription.status == 'Pendente'
+            }">
+              {{ subscription.status }}
+            </td>
+            
           </div>
           <td class="px-6 py-4">{{ subscription.frequency }}</td>
           <td class="px-6 py-4">
@@ -44,16 +54,61 @@
       </tbody>
     </table>
 
+    <!-- <div class="flex mt-4 gap-4 page-container">
+      <button (click)="prevPage()" [disabled]="currentPage === 0">Anterior</button>
+      <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Próxima</button>
+    </div> -->
+  </div>
+
+  <div class="flex justify-center pagination-container mt-4">
+    <nav aria-label="Page navigation">
+      <ul class="inline-flex -space-x-px text-base h-10">
+  
+        <li>
+          <button (click)="prevPage()" [disabled]="currentPage === 0"
+            class="button-previus-next flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            Anterior
+          </button>
+        </li>
+  
+      
+        <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+          <li>
+            <button (click)="goToPage(i)"
+              [class.bg-blue-50]="i === currentPage"
+              [class.text-blue-600]="i === currentPage"
+              [class.font-bold]="i === currentPage"
+              class=" button-page flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              {{ i + 1 }}
+            </button>
+          </li>
+        </ng-container>
+  
+     
+        <li>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1"
+            class="button-previus-next flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            Próximo
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  
+    
+  
     <app-form-subscriptions
                 [isOpen]="showFormSubs"
                 (close)="closeFormModal()"
-                (submit)="editingSubscription ? update(editingSubscription.id, $event) : null"
+                (submit)="onSubmitEditedSubscription($event)"
                 [subscriptionToEdit]="editingSubscription"
                 [headerText]="headerText"
-      [isEditing]="isEditing"
+                [isEditing]="isEditing"
     ></app-form-subscriptions>
 
   </div>
+  
 
 <ng-template #loading>
     <div role="status" class="flex justify-center h-screen loading-spinner">

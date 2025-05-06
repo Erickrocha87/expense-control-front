@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubscriptionsService } from '../../services/subscriptions.service';
@@ -11,20 +11,19 @@ import { Subscriptions } from '../../model/subscriptions';
   templateUrl: './form-subscriptions.component.html',
   styleUrl: './form-subscriptions.component.scss'
 })
-export class FormSubscriptionsComponent {
-
-  formSubscription!: FormGroup;
-
-  private subscription?: Subscriptions;
+export class FormSubscriptionsComponent implements OnChanges {
 
   @Input() isEditing: boolean = false;
   @Input() isOpen: boolean = false;
-  @Output() close = new EventEmitter<void>();
-  @Output() submit = new EventEmitter<Subscriptions>();
   @Input() headerText: string | null = null
   @Input() subscriptionToEdit: Subscriptions | null = null;
-  @Output() resetForm = new EventEmitter<void>();
 
+  @Output() resetForm = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
+  @Output() submit = new EventEmitter<Subscriptions>();
+
+  formSubscription!: FormGroup;
+  private subscription?: Subscriptions;
 
   constructor(private formBuilder: FormBuilder, private subscriptionsService: SubscriptionsService) {
     this.initForm()
@@ -41,7 +40,7 @@ export class FormSubscriptionsComponent {
       dueDate: ['', Validators.required],
       frequency: ['', Validators.required],
       status: ['', Validators.required]
-    })
+    });
   }
 
   ngOnChanges(): void {
@@ -49,33 +48,24 @@ export class FormSubscriptionsComponent {
       this.subscription = this.subscriptionToEdit
       this.formSubscription.patchValue(this.subscriptionToEdit)
     }else{
-      this.formSubscription.reset();
+      this.initForm();
     }
   }
 
   onSubmit() {
     if (this.formSubscription.valid) {
-      if(this.subscription?.id){
-        console.log('Form enviado:', this.formSubscription.value);
-        this.subscriptionsService.update(this.subscription.id, this.formSubscription.value).subscribe({
-          next: () => {
-            this.submit.emit(this.formSubscription.value);
-            this.closeModal();
-          },
-        });
-      }else{
-         console.log(this.formSubscription.value)
-        this.subscriptionsService.create(this.formSubscription.value).subscribe({
-          next: () => {
-            this.submit.emit(this.formSubscription.value);
-            this.closeModal();
-          },
-          error: (error) => {
-            console.error('Erro ao criar assinatura:', error);
-          }
-        });
-       }
+      const subscription = {
+        ...this.subscription,
+        ...this.formSubscription.value
+      } as Subscriptions;
+      console.log('Form subs', subscription)
+      this.submit.emit(subscription);
+      this.closeModal();
+    }else{
+      console.log("DEU MERDA AQUI Ó");
     }
+
+    
   }
 
   // onResetForm(){
@@ -83,3 +73,30 @@ export class FormSubscriptionsComponent {
   //   this.resetForm.emit();
   // }
 }
+// if (this.formSubscription.valid) {
+    //   const formValue = {
+    //     ...this.formSubscription.value,
+    //     price: parseFloat(this.formSubscription.value.price)
+    //   };
+
+    //   if(this.subscription?.id){
+    //     console.log('FORM ENVIADO:', this.formSubscription.value);
+    //     this.subscriptionsService.update(this.subscription.id, formValue).subscribe({
+    //       next: () => {
+    //         this.submit.emit(this.formSubscription.value);
+    //         this.closeModal();
+    //       },
+    //     });
+    //   }else{
+    //      console.log(this.formSubscription.value)
+    //     this.subscriptionsService.create(this.formSubscription.value).subscribe({
+    //       next: () => {
+    //         this.submit.emit(this.formSubscription.value);
+    //         this.closeModal();
+    //       },
+    //       error: (error) => {
+    //         console.error('Erro ao criar assinatura:', error);
+    //       }
+    //     });
+    //    }
+    // }

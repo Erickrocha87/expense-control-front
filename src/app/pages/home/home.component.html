@@ -47,7 +47,7 @@
 
                         <div class="form-container">
                             <button
-                            (click)="openFormModal()"
+                            (click)="openFormModalCreate()"
                             class="cursor-pointer modal-form text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center gap-2"
                             type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -58,7 +58,7 @@
                             <app-form-subscriptions
                                 [isOpen]="showFormSubs"
                                 (close)="closeFormModal()"
-                                (submit)="onSubscriptionCreated()"
+                                (submit)="onSubmitNewSubscription($event)"
                                 [headerText]="headerText"
                                 class="create-modal"
                             ></app-form-subscriptions>
@@ -72,7 +72,7 @@
                             </div>
                               <div>
                                 <p class="text-2xl">Total de Assinaturas</p>
-                                <p class="text-2xl">{{totalSubscriptions}}</p>
+                                <p class="text-2xl">{{ totalSubscriptions }}</p>
                             </div>
                         </div>
 
@@ -85,16 +85,17 @@
                             </div>
                             <div>
                                 <p class="text-2xl">Total Mensal</p>
-                                <p class="text-2xl">{{totalPrice | currency: 'BRL'}}</p>
+                                <p class="text-2xl">{{  totalPrice | currency: 'BRL'  }}</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col">
+                    <div class="flex flex-col table-container">
                         <app-table-service 
                             (error)="showModalError = true"
                             (totalPriceChange)="onTotalPriceChange($event)"
-                            (totalSubscriptions)="onTotalSubscriptionsChange($event)">
+                            (totalSubscriptions)="onTotalSubscriptionsChange($event)"
+                            class="table-service">
                         </app-table-service>
                         <app-dialog-error [isOpen]="showModalError" (closeModal)="onCloseModal()"></app-dialog-error>
                     </div>
