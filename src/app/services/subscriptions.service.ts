@@ -18,6 +18,12 @@ export class SubscriptionsService {
     );
   }
 
+  findByStatus(status: string, page: number, size: number){
+    return this.httpClient.get<PageResponse<Subscriptions>>(`${this.API_URL}?status=${status}&page=${page}&size=${size}`).pipe(
+      first()
+    );
+  }
+
   delete(id: number) {
     return this.httpClient.delete(`${this.API_URL}/${id}`).pipe(
       first(),

@@ -11,15 +11,13 @@ export class LoginService {
 
   private readonly API_URL = ('http://localhost:8080/auth/login')
 
-  constructor(private httpClient: HttpClient, private router: Router) {  }
+  constructor(private httpClient: HttpClient) {  }
 
     Login(email: string, password: string){
       return this.httpClient.post<LoginResponse>(this.API_URL, {email, password}).pipe(
         tap((value) =>{
           sessionStorage.setItem("auth-token", value.token)
         }),
-        tap(() => {this.router.navigate(['/home'])}
-        )
       )
     }
 }

@@ -6,11 +6,13 @@ import { FormSubscriptionsComponent } from '../../components/form-subscriptions/
 import { Subscriptions } from '../../model/subscriptions';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 import { ToastrService } from 'ngx-toastr';
-import { take } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthServiceService } from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-home',
-  imports: [TableServiceComponent, DialogErrorComponent, CommonModule, FormSubscriptionsComponent],
+  imports: [TableServiceComponent, DialogErrorComponent, CommonModule, FormSubscriptionsComponent, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -18,7 +20,7 @@ export class HomeComponent {
   @ViewChild(TableServiceComponent) tableComponent!: TableServiceComponent;
   // @ViewChild(FormSubscriptionsComponent) formSubscription!: FormSubscriptionsComponent;
   
-  constructor(private subscriptionService: SubscriptionsService, private toastr: ToastrService){}
+  constructor(private subscriptionService: SubscriptionsService, private toastr: ToastrService, private router: Router, private authService: AuthServiceService){}
 
   headerText = "Crie uma nova assinatura"
   showModalError = false;
@@ -27,6 +29,7 @@ export class HomeComponent {
   isFormOpen = false;
   showFormSubs = false;
   resetForm = false;
+  selectedStatus = '';
 
   onCloseModal() {
     this.showModalError = false;
@@ -48,26 +51,39 @@ export class HomeComponent {
     this.showFormSubs = false;
   }
 
-  // onSubscriptionCreated() {
-  //   this.tableComponent.loadSubscriptions();
-  // }
-  onSubmitNewSubscription(subscription: Subscriptions) {
+  onStatusChanged() {
+    console.log('Status filtrado:', this.selectedStatus);
+  }
+
+  onLogout(){
+    this.authService.logout();
+  }
+
+  onSubmitNewSubscription(data: Subscriptions | SubmitEvent) {
+
+    if (!(data instanceof Object) || (data as SubmitEvent).isTrusted) {
+      console.warn('Ignorando evento de submit inválido:', data);
+      return;
+    }
+
+    const subscription = data as Subscriptions;
     console.log('Home subs', subscription)
     this.subscriptionService.create(subscription).subscribe({
       next: (response) => {
         console.log('Assinatura criada com sucesso', response);
         this.toastr.success("Login realizado com sucesso")
         this.tableComponent.loadSubscriptions();
+        this.closeFormModal();
       },
       error: (error) => {
-        this.toastr.error("deu brete")
-        console.error('Erro ao criar assinatura:', error);
+        this.toastr.error('Erro ao criar assinatura:', error);
       }
+    
     });
+
+
   }
   
-  // onResetForm(){
-  //   this.formSubscription.onResetForm();
-  // }
+
 
 }

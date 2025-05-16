@@ -16,7 +16,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subscription of subscriptions" class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+        <ng-container *ngIf="subscriptions.length > 0; else noData">
+          <tr *ngFor="let subscription of subscriptions" class="odd:bg-white even:bg-gray-50 border-b border-gray-200">
           <th scope="row" class="px-6 py-4 font-normal text-gray-900 whitespace-nowrap">
             {{ subscription.serviceName }}
           </th>
@@ -51,14 +52,18 @@
             </a>
           </td>
         </tr>
+        </ng-container>
       </tbody>
+      
+      <ng-template #noData>
+        <tr>
+          <td colspan="7" class="text-center py-4 text-gray-500">
+            Nenhuma assinatura encontrada.
+          </td>
+        </tr>
+      </ng-template>
+      
     </table>
-
-    <!-- <div class="flex mt-4 gap-4 page-container">
-      <button (click)="prevPage()" [disabled]="currentPage === 0">Anterior</button>
-      <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Próxima</button>
-    </div> -->
   </div>
 
   <div class="flex justify-center pagination-container mt-4">

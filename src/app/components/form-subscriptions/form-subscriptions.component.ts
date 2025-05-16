@@ -38,13 +38,14 @@ export class FormSubscriptionsComponent implements OnChanges {
       serviceName: ['', Validators.required],
       price: ['', Validators.required],
       dueDate: ['', Validators.required],
-      frequency: ['', Validators.required],
+      frequency: ['', Validators.required], //O ERRO DE POST ESTÁ AQUI
       status: ['', Validators.required]
     });
   }
 
   ngOnChanges(): void {
     if(this.subscriptionToEdit){
+      console.log('ngOnChanges chamado com:', this.subscriptionToEdit);
       this.subscription = this.subscriptionToEdit
       this.formSubscription.patchValue(this.subscriptionToEdit)
     }else{
@@ -58,14 +59,14 @@ export class FormSubscriptionsComponent implements OnChanges {
         ...this.subscription,
         ...this.formSubscription.value
       } as Subscriptions;
-      console.log('Form subs', subscription)
+
+      console.log('Enviando formulário:', subscription);
       this.submit.emit(subscription);
-      this.closeModal();
+      this.formSubscription.reset();
     }else{
-      console.log("DEU MERDA AQUI Ó");
+      console.warn('Form inválido, envio ignorado.');
     }
 
-    
   }
 
   // onResetForm(){

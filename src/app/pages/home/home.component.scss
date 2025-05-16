@@ -73,7 +73,7 @@
 }
 
 .ver-nome{
-    padding: 2.5rem 3rem 2rem 3rem;
+    padding: 1.5rem 3rem 1.5rem 3rem;
     display: flex;
     align-items: center;
 }
@@ -131,4 +131,14 @@
 .table-service{
     min-width: 100%;
     min-height: 100%;
+}
+
+.filter-status-container{
+    justify-content: end;
+    gap: 0.5rem;
+    padding-right: 3rem;
+}
+
+.select-container{
+    padding: 0.5rem;
 }
