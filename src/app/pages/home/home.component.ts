@@ -9,10 +9,11 @@ import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../services/auth-service.service';
+import { SideMenuComponent } from '../../componenents/side-menu/side-menu.component';
 
 @Component({
   selector: 'app-home',
-  imports: [TableServiceComponent, DialogErrorComponent, CommonModule, FormSubscriptionsComponent, FormsModule],
+  imports: [TableServiceComponent, DialogErrorComponent, CommonModule, FormSubscriptionsComponent, FormsModule, SideMenuComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -55,10 +56,6 @@ export class HomeComponent {
     console.log('Status filtrado:', this.selectedStatus);
   }
 
-  onLogout(){
-    this.authService.logout();
-  }
-
   onSubmitNewSubscription(data: Subscriptions | SubmitEvent) {
 
     if (!(data instanceof Object) || (data as SubmitEvent).isTrusted) {
@@ -71,7 +68,7 @@ export class HomeComponent {
     this.subscriptionService.create(subscription).subscribe({
       next: (response) => {
         console.log('Assinatura criada com sucesso', response);
-        this.toastr.success("Login realizado com sucesso")
+        this.toastr.success("Assinatura criada com sucesso")
         this.tableComponent.loadSubscriptions();
         this.closeFormModal();
       },

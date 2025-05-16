@@ -1,0 +1,47 @@
+@use '../../../styles/variables.scss';
+
+.menu-container {
+  background-color: variables.$secondary-color;
+  color: white;
+  height: 100%;
+}
+
+.menu-container-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container {
+  width: 15rem;
+}
+
+.menu-title {
+  color: variables.$secondary-color;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.menu-item {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: variables.$secondary-color;
+  width: 100%;
+}
+
+.button-container {
+  padding: 1rem;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+    margin-top: 0.5rem;
+    &:hover {
+        background-color: #09351b;
+      }
+}
+
+.active-menu {
+    background-color: #09351b;
+  }

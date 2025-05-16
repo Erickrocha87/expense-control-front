@@ -1,0 +1,41 @@
+@use '../../../styles/variables.scss';
+
+.container-user-data {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+}
+
+.container-user-data-main {
+  width: 100%;
+
+}
+
+.container-user-data-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.main-container{
+    width: 100%;
+    flex: 1;
+}
+
+.menu-container{
+    flex: 0.20;
+}
+
+.menu-container-wrapper{
+    height: 100%;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
