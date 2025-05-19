@@ -1,41 +1,70 @@
-<main>
-    <div class="container-user-data">
 
-      <section class="menu-container">
-        <div class="menu-container-wrapper">
-          <app-side-menu></app-side-menu>
-        </div>
-      </section>
+    <main>
+        <div class="container-user-data">
 
-  
-      <section class="main-container">
-        <div class="container-user-data-main">
-          <div class="container-user-data-wrapper">
-            
+            <section class="menu-container">
+                <div class="menu-container-wrapper">
+                    <app-side-menu></app-side-menu>
+                </div>
+            </section>
 
-            <div class="form-container">
-                Dados do Usuário
 
-                <form >
+            <section class="main-container">
+                <div class="container-user-data-main">
 
-                    <div class="email-container">
-                        <label for="email">Email</label>
-                        <input type="text" placeholder="Digite seu email" formControlName="email">
+                    <div class="title-wrapper">
+                        <h1>Dados do Usuário</h1>
                     </div>
-                    
+                    <div class="container-user-data-wrapper">
 
-                    <div class="password-container">
-                        <label for="password">Senha</label>
-                        <input type="password" placeholder="Digite sua senha" formControlName="password">
-                        <span class="forgot-password">Esqueceu sua senha?</span>
+
+                        <div class="form-container">
+                            <form>
+
+                                 <div class="password-container">
+                                    <label for="name">Nome do usuário</label>
+                                    <input type="text" formControlName="name">
+                                </div>
+
+
+                                <div class="email-container">
+                                    <label for="email">Email</label>
+                                    <input type="email" formControlName="email">
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="form-container">
+
+                            <form>
+
+                                <div class="email-container">
+                                    <label for="currentPassword">Senha atual</label>
+                                    <input type="password" formControlName="currentPassword">
+                                </div>
+
+
+                                <div class="password-container">
+                                    <label for="newPassword">Nova senha</label>
+                                    <input type="password" formControlName="password">
+                                </div>
+
+                                <div class="email-container">
+                                    <label for="confirmPassword">Confirmar senha</label>
+                                    <input type="password" formControlName="email">
+                                </div>
+
+
+                                <div class="button-container gap-1 flex flex-col items-center">
+                                    <button class="login-button">Alterar senha</button>
+                                </div>
+
+                            </form>
+                        </div>
+
                     </div>
-                    
-                </form>
-            </div>
-
-          </div>
+                </div>
+            </section>
         </div>
-      </section>
-    </div>
-  </main>
-  
+    </main>

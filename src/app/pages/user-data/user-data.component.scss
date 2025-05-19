@@ -1,41 +1,109 @@
 @use '../../../styles/variables.scss';
 
 .container-user-data {
-  display: flex;
-  flex-direction: row;
-  min-height: 100vh;
-  width: 100%;
-  background-color: white;
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100%;
+    background-color: white;
 }
 
 .container-user-data-main {
-  width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
 }
 
 .container-user-data-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 8rem;
 
-  width: 100%;
 }
 
-.main-container{
+.main-container {
     width: 100%;
     flex: 1;
+    display: flex;
+    align-items: center;
 }
 
-.menu-container{
+.menu-container {
     flex: 0.20;
 }
 
-.menu-container-wrapper{
+.menu-container-wrapper {
     height: 100%;
 }
 
-.form-container{
+.form-container {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    label {
+        font-weight: 500;
+    }
+
+    input {
+        padding: 0.7rem;
+        width: 20rem;
+        border: 1px solid variables.$secondary-color;
+        border-radius: 0.4rem;
+        margin-bottom: 0.3rem;
+        background-color: white;
+
+        &::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+.password-container {
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    gap: 0.2rem;
+
+    .forgot-password {
+        text-decoration: underline;
+        font-size: 0.8rem;
+        cursor: pointer;
+        text-align: end;
+    }
+
+}
+
+.email-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.title-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.login-button {
+    background-color: variables.$secondary-color;
+    color: white;
+    padding: 0.7rem 1rem;
+    border-radius: 0.4rem;
+    width: 20rem;
+    border: none;
 }
