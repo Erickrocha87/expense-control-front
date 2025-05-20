@@ -19,7 +19,7 @@
 
 
                         <div class="form-container">
-                            <form>
+                            <form [formGroup]="dataUserForm">
 
                                  <div class="password-container">
                                     <label for="name">Nome do usuário</label>
@@ -37,7 +37,7 @@
 
                         <div class="form-container">
 
-                            <form>
+                            <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
 
                                 <div class="email-container">
                                     <label for="currentPassword">Senha atual</label>
@@ -47,17 +47,17 @@
 
                                 <div class="password-container">
                                     <label for="newPassword">Nova senha</label>
-                                    <input type="password" formControlName="password">
+                                    <input type="password" formControlName="newPassword">
                                 </div>
 
                                 <div class="email-container">
                                     <label for="confirmPassword">Confirmar senha</label>
-                                    <input type="password" formControlName="email">
+                                    <input type="password" formControlName="confirmPassword">
                                 </div>
 
 
                                 <div class="button-container gap-1 flex flex-col items-center">
-                                    <button class="login-button">Alterar senha</button>
+                                    <button type="submit" class="login-button">Alterar senha</button>
                                 </div>
 
                             </form>
