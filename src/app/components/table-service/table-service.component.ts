@@ -11,10 +11,10 @@ import { PageResponse } from '../../model/page-response';
   selector: 'app-table-service',
   imports: [CommonModule, FormSubscriptionsComponent],
   templateUrl: './table-service.component.html',
-  styleUrl: './table-service.component.scss'
+  styleUrl: './table-service.component.scss',
 })
 export class TableServiceComponent {
-  @Input() selectedStatus: string = "";
+  @Input() selectedStatus: string = '';
 
   @Output() error = new EventEmitter<void>();
   @Output() totalPriceChange = new EventEmitter<number>();
@@ -23,29 +23,37 @@ export class TableServiceComponent {
 
   editingSubscription: Subscriptions | null = null;
   isEditing: boolean = false;
-  headerText = "Editar assinatura"
+  headerText = 'Editar assinatura';
   showModalError = false;
   showFormSubs = false;
   currentPage = 0;
   totalPages = 0;
-  size = 7
+  size = 7;
   totalElements = 0;
-  totalPrice = 0
+  totalPrice = 0;
 
   subscriptions$ = new BehaviorSubject<Subscriptions[]>([]);
-  _subscriptions$ = new BehaviorSubject<PageResponse<Subscriptions>>({content: [], totalPages: 0, totalElements: 0, pageNumber: 0, pageSize: this.size, totalPrice: 0});
-  // subscriptions$: Observable<Subscriptions[]> = of([]);
-
-  // subscriptionsService: SubscriptionsService;
-
+  _subscriptions$ = new BehaviorSubject<PageResponse<Subscriptions>>({
+    content: [],
+    totalPages: 0,
+    totalElements: 0,
+    pageNumber: 0,
+    pageSize: this.size,
+    totalPrice: 0,
+  });
+ 
   constructor(private subscriptionsService: SubscriptionsService) {
     this.loadSubscriptions();
   }
 
   loadSubscriptions() {
-    this.subscriptionsService.findAll(this.currentPage, this.size).pipe(
-      map(response =>{
-          const sortedContent = response.content.sort((a,b) => a.serviceName.localeCompare(b.serviceName));
+    this.subscriptionsService
+      .findAll(this.currentPage, this.size)
+      .pipe(
+        map((response) => {
+          const sortedContent = response.content.sort((a, b) =>
+            a.serviceName.localeCompare(b.serviceName)
+          );
           this.subscriptions$.next(sortedContent);
           this._subscriptions$.next(response);
           this.totalPages = response.totalPages;
@@ -53,21 +61,32 @@ export class TableServiceComponent {
           this.totalPrice = response.totalPrice;
           this.getTotalPrice();
           this.getTotalSubscriptions();
-      }),
-      catchError(error => {
-        this.showModalError = true;
-        this.error.emit();
-        console.error(error);
-        return of({ content: [], totalPages: 0, totalElements: 0, pageNumber: 0, pageSize: this.size, totalPrice: 0 });
-      })
-    ).subscribe();
-
+        }),
+        catchError((error) => {
+          this.showModalError = true;
+          this.error.emit();
+          console.error(error);
+          return of({
+            content: [],
+            totalPages: 0,
+            totalElements: 0,
+            pageNumber: 0,
+            pageSize: this.size,
+            totalPrice: 0,
+          });
+        })
+      )
+      .subscribe();
   }
 
-  filteredByStatus(){
-    this.subscriptionsService.findByStatus(this.selectedStatus, this.currentPage, this.size).pipe(
-      map(response =>{
-          const sortedContent = response.content.sort((a,b) => a.serviceName.localeCompare(b.serviceName));
+  filteredByStatus() {
+    this.subscriptionsService
+      .findByStatus(this.selectedStatus, this.currentPage, this.size)
+      .pipe(
+        map((response) => {
+          const sortedContent = response.content.sort((a, b) =>
+            a.serviceName.localeCompare(b.serviceName)
+          );
           this.subscriptions$.next(sortedContent);
           this._subscriptions$.next(response);
           this.totalPages = response.totalPages;
@@ -75,14 +94,22 @@ export class TableServiceComponent {
           this.totalPrice = response.totalPrice;
           this.getTotalPrice();
           this.getTotalSubscriptions();
-      }),
-      catchError(error => {
-        this.showModalError = true;
-        this.error.emit();
-        console.error(error);
-        return of({ content: [], totalPages: 0, totalElements: 0, pageNumber: 0, pageSize: this.size, totalPrice: 0 });
-      })
-    ).subscribe();
+        }),
+        catchError((error) => {
+          this.showModalError = true;
+          this.error.emit();
+          console.error(error);
+          return of({
+            content: [],
+            totalPages: 0,
+            totalElements: 0,
+            pageNumber: 0,
+            pageSize: this.size,
+            totalPrice: 0,
+          });
+        })
+      )
+      .subscribe();
   }
 
   ngOnChanges() {
@@ -96,25 +123,31 @@ export class TableServiceComponent {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
       this.loadSubscriptions();
-      if(this.currentPage == null){
+      if (this.currentPage == null) {
         this.loadSubscriptions();
         this.goToPage(page - 1);
       }
     }
   }
-  
+
   getTotalPrice() {
-    this._subscriptions$.pipe(
-      take(1),
-      map(response => response.totalPrice)
-    ).subscribe(totalPrice => this.totalPriceChange.emit(totalPrice));
+    this._subscriptions$
+      .pipe(
+        take(1),
+        map((response) => response.totalPrice)
+      )
+      .subscribe((totalPrice) => this.totalPriceChange.emit(totalPrice));
   }
 
   getTotalSubscriptions() {
-    this._subscriptions$.pipe(
-      take(1),
-      map(subscriptions => subscriptions.totalElements)
-    ).subscribe(totalSubscriptions => this.totalSubscriptions.emit(totalSubscriptions));
+    this._subscriptions$
+      .pipe(
+        take(1),
+        map((subscriptions) => subscriptions.totalElements)
+      )
+      .subscribe((totalSubscriptions) =>
+        this.totalSubscriptions.emit(totalSubscriptions)
+      );
   }
 
   nextPage() {
@@ -141,27 +174,34 @@ export class TableServiceComponent {
     this.subscriptionsService.delete(id).subscribe({
       next: () => {
         const currentElements = this.totalElements - 1;
-        const isLastItemOnPage = currentElements % this.size === 0 && this.currentPage > 0;
+        const isLastItemOnPage =
+          currentElements % this.size === 0 && this.currentPage > 0;
         if (isLastItemOnPage) {
           this.currentPage--;
         }
-        this.loadSubscriptions();
+        if (this.selectedStatus) {
+          this.filteredByStatus();
+        } else {
+          this.loadSubscriptions();
+        }
       },
-      error: () => this.showModalError = true
+      error: () => (this.showModalError = true),
     });
   }
 
   onSubmitEditedSubscription(subscription: Subscriptions) {
     if (!subscription.id) return;
-    this.subscriptionsService.update(subscription.id, subscription).subscribe((updatedSub) => {
-      if (this.selectedStatus) {
-        this.filteredByStatus();
-      } else {
-        this.loadSubscriptions();
-      }
-      
-      this.closeFormModal();
-    });
+    this.subscriptionsService
+      .update(subscription.id, subscription)
+      .subscribe((updatedSub) => {
+        if (this.selectedStatus) {
+          this.filteredByStatus();
+        } else {
+          this.loadSubscriptions();
+        }
+
+        this.closeFormModal();
+      });
   }
 
   openFormModal(subscription?: Subscriptions) {
@@ -172,8 +212,8 @@ export class TableServiceComponent {
 
   closeFormModal() {
     this.showFormSubs = false;
-  }  
-  
+  }
+
   closeModalError() {
     this.showModalError = false;
   }

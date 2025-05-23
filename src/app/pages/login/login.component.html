@@ -15,27 +15,36 @@
 
                     <div class="email-container">
                         <label for="email">Email</label>
-                        <input type="email" placeholder="Digite seu email" formControlName="email">
+                        <input type="email" placeholder="Digite seu email" formControlName="email" />
+
+                        <small class="error-container"
+                            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                            Email inválido
+                        </small>
                     </div>
-                    
+
 
                     <div class="password-container">
                         <label for="password">Senha</label>
                         <input type="password" placeholder="Digite sua senha" formControlName="password">
-                        <span class="forgot-password">Esqueceu sua senha?</span>
+                        <small class="error-container"
+                            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                            Minimo 8 caracteres
+                        </small>
+
                     </div>
-                    
+
                 </form>
             </div>
 
             <div class="button-container gap-1 flex flex-col items-center">
-                <button class="login-button" (click)="onSubmit()">Entrar</button>
+                <button class="login-button" [disabled]="!loginForm.valid" (click)="onSubmit()">Entrar</button>
                 <div class="divider">
                     <div></div>
                     <span> ou </span>
                     <div></div>
                 </div>
-                
+
                 <button class="register-button"> <a routerLink="/cadastro">Cadastrar</a></button>
             </div>
         </div>

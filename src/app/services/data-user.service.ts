@@ -20,4 +20,21 @@ export class DataUserService {
     );
   }
 
+  editDataUser(id: number, user: User){
+    return this.httpClient.put<User>(`${this.API_URL}/${id}`, user).pipe(
+      first()
+    );
+  }
+
+  uploadProfileImage(id: number, image: File){
+    const formData = new FormData();
+    formData.append('file', image);
+
+    return this.httpClient.post<User>(`${this.API_URL}/${id}/upload-profile-image`, formData).pipe(
+      first()
+    );
+  }
+
+  
+
 }

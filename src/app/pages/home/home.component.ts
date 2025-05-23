@@ -7,8 +7,6 @@ import { Subscriptions } from '../../model/subscriptions';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthServiceService } from '../../services/auth-service.service';
 import { SideMenuComponent } from '../../componenents/side-menu/side-menu.component';
 
 @Component({
@@ -19,9 +17,8 @@ import { SideMenuComponent } from '../../componenents/side-menu/side-menu.compon
 })
 export class HomeComponent {
   @ViewChild(TableServiceComponent) tableComponent!: TableServiceComponent;
-  // @ViewChild(FormSubscriptionsComponent) formSubscription!: FormSubscriptionsComponent;
   
-  constructor(private subscriptionService: SubscriptionsService, private toastr: ToastrService, private router: Router, private authService: AuthServiceService){}
+  constructor(private subscriptionService: SubscriptionsService, private toastr: ToastrService){}
 
   headerText = "Crie uma nova assinatura"
   showModalError = false;
@@ -72,8 +69,8 @@ export class HomeComponent {
         this.tableComponent.loadSubscriptions();
         this.closeFormModal();
       },
-      error: (error) => {
-        this.toastr.error('Erro ao criar assinatura:', error);
+      error: () => {
+        this.toastr.error('Erro ao criar assinatura:');
       }
     
     });

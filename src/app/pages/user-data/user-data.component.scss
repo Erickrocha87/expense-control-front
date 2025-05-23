@@ -8,27 +8,14 @@
     background-color: white;
 }
 
-.container-user-data-main {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.container-user-data-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 8rem;
-
-}
 
 .main-container {
     width: 100%;
     flex: 1;
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
+
 
 .menu-container {
     flex: 0.20;
@@ -38,58 +25,6 @@
     height: 100%;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    label {
-        font-weight: 500;
-    }
-
-    input {
-        padding: 0.7rem;
-        width: 20rem;
-        border: 1px solid variables.$secondary-color;
-        border-radius: 0.4rem;
-        margin-bottom: 0.3rem;
-        background-color: white;
-
-        &::placeholder {
-            color: rgba(0, 0, 0, 0.5);
-        }
-    }
-}
-
-.password-container {
-
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    gap: 0.2rem;
-
-    .forgot-password {
-        text-decoration: underline;
-        font-size: 0.8rem;
-        cursor: pointer;
-        text-align: end;
-    }
-
-}
-
-.email-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
 
 .title-wrapper {
     display: flex;
@@ -107,4 +42,233 @@ form {
     width: 20rem;
     border: none;
     cursor: pointer;
+}
+
+.main-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+
+}
+
+.user-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    .avatar-wrapper {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #14532d;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .edit-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: #14532d;
+            color: white;
+            border-radius: 50%;
+            padding: 6px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+
+            i {
+                pointer-events: none;
+            }
+
+            &:hover {
+                background-color: #166534;
+            }
+        }
+    }
+}
+
+
+.profile-container {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.user-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        input {
+            padding: 0.7rem;
+            width: 15rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+
+            &::placeholder {
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: #166534;
+                box-shadow: 0 0 0 2px rgba(22, 101, 52, 0.2);
+            }
+        }
+    }
+
+    button {
+        align-self: flex-start;
+        padding: 0.6rem 1.5rem;
+        background-color: #166534;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+            background-color: #14532d;
+        }
+    }
+}
+
+.data-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    gap: 4rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.change-password-button {
+
+    align-self: flex-start;
+    padding: 0.6rem 1.5rem;
+    background-color: #166534;
+    width: 15rem;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+        background-color: #14532d;
+    }
+}
+
+.semi-title-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.semi-title-wrapper-data {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: center;
+
+    button {
+        width: 7rem;
+    }
+}
+
+.user-data-camp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding-bottom: 1rem;
+}
+
+.user-data {
+    display: flex;
+    width: 15rem;
+    flex-direction: column;
+
+    .edit-button {
+        display: flex;
+        justify-content: center;
+        padding-top: 0.5rem;
+    }
+
+    button {
+        align-self: flex-start;
+        padding: 0.6rem 1.5rem;
+        background-color: #166534;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+            background-color: #14532d;
+        }
+    }
+}
+
+.user-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

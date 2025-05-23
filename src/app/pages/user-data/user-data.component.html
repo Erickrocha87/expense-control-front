@@ -1,70 +1,108 @@
+<main>
+    <div class="container-user-data">
 
-    <main>
-        <div class="container-user-data">
+        <section class="menu-container">
+            <div class="menu-container-wrapper">
+                <app-side-menu></app-side-menu>
+            </div>
+        </section>
 
-            <section class="menu-container">
-                <div class="menu-container-wrapper">
-                    <app-side-menu></app-side-menu>
+        <section class="main-container">
+
+            <div class="main-container-wrapper">
+
+                <div class="title-wrapper">
+                    Perfil do Usuário
                 </div>
-            </section>
 
-
-            <section class="main-container">
-                <div class="container-user-data-main">
-
-                    <div class="title-wrapper">
-                        <h1>Dados do Usuário</h1>
-                    </div>
-                    <div class="container-user-data-wrapper">
-
-
-                        <div class="form-container">
-                            <form [formGroup]="dataUserForm">
-
-                                 <div class="password-container">
-                                    <label for="name">Nome do usuário</label>
-                                    <input type="text" formControlName="name">
+                <div class="data-wrapper">
+                    <div class="profile-container">
+                        <div class="user-data-wrapper">
+                            <ng-container *ngIf="!editMode; else editForm">
+                                <div class="semi-title-wrapper-data">
+                                    Dados do Usuário
+                                </div>
+                                <div class="user-avatar">
+                                    <input type="file" id="avatarUpload" hidden (change)="onFileSelected($event)" />
+                                    <div *ngIf="originalDataUser" class="avatar-wrapper" (click)="triggerFileInput()">
+                                        <img [src]="getEncodedImageUrl(originalDataUser.profileImageUrl) || 'assets/images/default-avatar.png'"
+                                            alt="" class="user-image" />
+                                    </div>
                                 </div>
 
+                                <div class="user-data">
 
-                                <div class="email-container">
-                                    <label for="email">Email</label>
-                                    <input type="email" formControlName="email">
+
+                                    <div class="user-data-camp">
+                                        <p><strong>Nome</strong><br>
+                                        <p>{{ originalDataUser.username }}</p>
+                                    </div>
+                                    <div class="user-data-camp">
+                                        <p><strong>E-mail</strong></p>
+                                        <p> {{ originalDataUser.email }}</p>
+                                    </div>
+                                    <div class="edit-button">
+                                        <button (click)="editMode = true">Editar</button>
+                                    </div>
+
                                 </div>
+                            </ng-container>
+                            <ng-template #editForm>
 
-                            </form>
+                                <form [formGroup]="dataUserForm" (ngSubmit)="onSubmitDataUser()" class="user-form">
+                                    <div class="semi-title-wrapper">
+                                        Editar Dados
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Nome</label>
+                                        <input type="text" id="username" formControlName="username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" id="email" formControlName="email" />
+                                    </div>
+                                    <div class="buttons-wrapper">
+                                        <button type="submit"
+                                            [disabled]="!dataUserForm.valid || (dataUserForm.value.username === originalDataUser.username && dataUserForm.value.email === originalDataUser.email)">Salvar</button>
+                                        <button (click)="editMode = false" class="cancel-button">Cancelar</button>
+                                    </div>
+                                </form>
+                            </ng-template>
                         </div>
+                    </div>
 
-                        <div class="form-container">
+                    <div class="profile-container">
 
-                            <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
-
-                                <div class="email-container">
-                                    <label for="currentPassword">Senha atual</label>
-                                    <input type="password" formControlName="currentPassword">
-                                </div>
-
-
-                                <div class="password-container">
-                                    <label for="newPassword">Nova senha</label>
-                                    <input type="password" formControlName="newPassword">
-                                </div>
-
-                                <div class="email-container">
-                                    <label for="confirmPassword">Confirmar senha</label>
-                                    <input type="password" formControlName="confirmPassword">
-                                </div>
-
-
-                                <div class="button-container gap-1 flex flex-col items-center">
-                                    <button type="submit" class="login-button">Alterar senha</button>
-                                </div>
-
-                            </form>
-                        </div>
+                        <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()" class="user-form">
+                            <div class="semi-title-wrapper">
+                                Alterar Senha
+                            </div>
+                            <div class="form-group">
+                                <label for="currentPassword">Senha atual</label>
+                                <input type="password" id="currentPassword" placeholder="••••••••"
+                                    formControlName="currentPassword" />
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Nova senha</label>
+                                <input type="password" id="newPassword" placeholder="Mínimo 8 caracteres"
+                                    formControlName="newPassword" />
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirmar senha</label>
+                                <input type="password" id="confirmPassword" placeholder="Repita a nova senha"
+                                    formControlName="confirmPassword" />
+                            </div>
+                            <button class="change-password-button" type="submit"
+                                [disabled]="changePasswordForm.invalid">Alterar senha</button>
+                        </form>
 
                     </div>
+
                 </div>
-            </section>
-        </div>
-    </main>
+            </div>
+
+
+        </section>
+
+    </div>
+</main>

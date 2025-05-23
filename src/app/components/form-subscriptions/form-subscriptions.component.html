@@ -1,4 +1,5 @@
-<div *ngIf="isOpen" id="crud-modal" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.1)]">
+<div *ngIf="isOpen" id="crud-modal" tabindex="-1" aria-hidden="true"
+    class="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-[rgba(0,0,0,0.1)]">
 
     <div class="relative p-6 w-full max-w-2xl">
         <div class="relative bg-white rounded-lg shadow form-wrapper">
@@ -6,34 +7,46 @@
                 <h3 class="text-xl font-semibold text-gray-900">
                     {{ headerText }}
                 </h3>
-                <button (click)="closeModal()" type="button" class="text-gray-400 bg-transparent cursor-pointer hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                <button (click)="closeModal()" type="button"
+                    class="text-gray-400 bg-transparent cursor-pointer hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                     </svg>
                     <span class="sr-only">Fechar modal</span>
                 </button>
             </div>
-            
-            <form *ngIf="formSubscription && formSubscription.controls['frequency']" [formGroup]="formSubscription" (ngSubmit)="onSubmit()" novalidate class="p-6">
+
+            <form *ngIf="formSubscription && formSubscription.controls['frequency']" [formGroup]="formSubscription"
+                (ngSubmit)="onSubmit()" novalidate class="p-6">
                 <div class="grid gap-6 mb-6 grid-cols-2">
                     <div class="col-span-2">
                         <label for="serviceName" class="block mb-2 text-lg font-medium text-gray-900">Nome</label>
-                        <input type="text" name="serviceName" id="serviceName" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3" placeholder="Digite o nome" formControlName="serviceName" required>
+                        <input type="text" name="serviceName" id="serviceName"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                            placeholder="Digite o nome" formControlName="serviceName" required>
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="price" class="block mb-2 text-lg font-medium text-gray-900">Preço</label>
-                        <input type="text" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3" placeholder="R$0,00" formControlName="price" required>
+                        <input type="text" name="price" id="price"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                            placeholder="R$0,00" formControlName="price" required>
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="dueDate" class="block mb-2 text-lg font-medium text-gray-900">Data da cobrança</label>
-                        <input type="date" name="dueDate" id="dueDate" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3" placeholder="R$0,00" formControlName="dueDate" required>
+                        <label for="dueDate" class="block mb-2 text-lg font-medium text-gray-900">Data da
+                            cobrança</label>
+                        <input type="date" name="dueDate" id="dueDate"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-3"
+                            placeholder="R$0,00" formControlName="dueDate" required>
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="frequency" class="block mb-2 text-lg font-medium text-gray-900">Frequência</label>
-                        <select id="frequency" formControlName="frequency" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+                        <select id="frequency" formControlName="frequency"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
                             <option value="" disabled>Selecione</option>
                             <option value="Mensal">Mensal</option>
                             <option value="Trimestral">Trimestral</option>
@@ -44,7 +57,8 @@
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="status" class="block mb-2 text-lg font-medium text-gray-900">Status</label>
-                        <select id="status" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+                        <select id="status" formControlName="status"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
                             <option value="" disabled>Selecione</option>
                             <option value="Pago">Pago</option>
                             <option value="Pendente">Pendente</option>
@@ -53,15 +67,22 @@
                     </div>
 
                 </div>
-                <div class="flex flex-row justify-end gap-3 ver-nome-3">
-                <button type="submit" class=" cursor-pointer button-create text-white inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 text-center">
-                    <svg *ngIf="!isEditing" class="me-1 -ms-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                   {{ isEditing ? 'Salvar' : 'Adicionar'}}
-                </button>
+                <div class="flex flex-row justify-end gap-3 button-wrapper">
+                    <button type="submit" [disabled]="!formSubscription.valid"
+                        class=" cursor-pointer button-create text-white inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 text-center">
+                        <svg *ngIf="!isEditing" class="me-1 -ms-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        {{ isEditing ? 'Salvar' : 'Adicionar'}}
+                    </button>
 
-                <button type="button" (click)="closeModal()" class="button-cancel cursor-pointer text-black inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 text-center">
-                    Cancelar
-                </button>
+                    <button type="button" (click)="closeModal()"
+                        class="button-cancel cursor-pointer text-black inline-flex items-center focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-6 py-3 text-center">
+                        Cancelar
+                    </button>
                 </div>
             </form>
         </div>

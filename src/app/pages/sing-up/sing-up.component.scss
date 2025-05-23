@@ -1,6 +1,6 @@
 @use '../../../styles/variables.scss';
 
-main{
+main {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,13 +8,13 @@ main{
     height: 100%;
     width: 100%;
 
-    section{
+    section {
         height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
 
-        .container-centralized{
+        .container-centralized {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -22,32 +22,32 @@ main{
         }
     }
 
-    .logo-container{
+    .logo-container {
         height: 7rem;
     }
 
-    .main-section{
+    .main-section {
         flex: 1;
         background-color: variables.$background;
         display: flex;
         justify-content: center;
 
-        img{
-           width: 42rem;
-           margin-bottom: 5rem;
+        img {
+            width: 42rem;
+            margin-bottom: 5rem;
         }
     }
 
-    .form-section{
+    .form-section {
         flex: 0.3;
         padding: 0 2rem;
         background-color: variables.$verdinho;
-        
+
         img {
             max-width: 300px;
         }
 
-        .container-centralized{
+        .container-centralized {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,7 +55,8 @@ main{
             height: 100%;
             width: 100%;
         }
-        .text-container{
+
+        .text-container {
             font-size: 1.8rem;
             font-weight: 500;
             max-width: 15rem;
@@ -66,16 +67,16 @@ main{
             display: flex;
             flex-direction: column;
 
-            form{
+            form {
                 display: flex;
                 flex-direction: column;
                 gap: 1.5rem;
 
-                label{
+                label {
                     font-weight: 500;
                 }
 
-                input{
+                input {
                     padding: 0.7rem;
                     width: 20rem;
                     border: 1px solid variables.$secondary-color;
@@ -89,22 +90,26 @@ main{
                 }
             }
 
-            .name-container{
+            .username-container {
                 gap: 0.2rem;
+                position: relative;
             }
 
-            .email-container{
+            .email-container {
                 gap: 0.2rem;
+                position: relative;
             }
 
-            .confirm-password-container{
+            .confirm-password-container {
                 gap: 0.2rem;
+                position: relative;
             }
 
-            .password-container{
+            .password-container {
                 gap: 0.2rem;
+                position: relative;
 
-                .forgot-password{
+                .forgot-password {
                     text-decoration: underline;
                     font-size: 0.8rem;
                     cursor: pointer;
@@ -113,11 +118,11 @@ main{
             }
         }
 
-        button{
+        button {
             cursor: pointer;
             margin: 0.6rem 0;
-        
-            &.register-button{
+
+            &.register-button {
                 background-color: variables.$secondary-color;
                 color: white;
                 padding: 0.7rem 1rem;
@@ -127,7 +132,7 @@ main{
             }
         }
 
-        .login-link{
+        .login-link {
             text-decoration: underline;
             color: variables.$secondary-color;
             cursor: pointer;
@@ -135,3 +140,22 @@ main{
     }
 }
 
+.error-wrapper {
+    height: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.error-container {
+    position: absolute;
+    bottom: -1.2rem;
+    left: 0;
+    color: red;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.error-container.visible {
+    visibility: visible;
+    opacity: 1;
+}

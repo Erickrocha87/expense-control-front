@@ -10,72 +10,74 @@
     flex-direction: column;
     height: 33.5rem;
 
-    .table-service{
-       border: none;
-       width: 100%;
-       
+    .table-service {
+        border: none;
+        width: 100%;
+
     }
-    
-    th{
+
+    th {
         padding: 1rem 1.5rem;
         text-align: center;
     }
-    td{
+
+    td {
         padding: 1rem 0;
         text-align: center;
     }
 }
-.form-container{
+
+.form-container {
     display: flex;
     align-items: center;
 }
 
-.modal-form{
-  padding: 1rem;
-  border-radius: 1.5rem;
-  white-space: nowrap;
-  background-color: variables.$secondary-color;
-  font-weight: 500px;
+.modal-form {
+    padding: 1rem;
+    border-radius: 1.5rem;
+    white-space: nowrap;
+    background-color: variables.$secondary-color;
+    font-weight: 500px;
 }
 
-.status-container{
+.status-container {
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.7rem;
-        width: 6rem;  
-        height: 2rem; 
-        margin: 0.8rem auto; 
-      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.7rem;
+    width: 6rem;
+    height: 2rem;
+    margin: 0.8rem auto;
+
 }
 
-.page-container{
+.page-container {
     padding: 0rem 3rem;
     justify-content: end;
-    
-    button{
+
+    button {
         cursor: pointer
     }
 }
 
-.button-page{
+.button-page {
     width: 2.2rem;
 }
 
-.pagination-container{
-    flex: 0 0 auto;      
+.pagination-container {
+    flex: 0 0 auto;
     padding: 1rem;
     background: white;
     border: none;
 }
 
 .table-wrapper {
-    flex: 1 1 auto;       
-    overflow-y: auto;     //caso precisar de scroll - somente se quebrar
-    overflow-x: hidden;   
-  }
+    flex: 1 1 auto;
+    overflow-y: auto; //caso precisar de scroll - somente se quebrar
+    overflow-x: hidden;
+}
 
-  .button-previus-next{
+.button-previus-next {
     padding: 0.5rem;
-  }
+}

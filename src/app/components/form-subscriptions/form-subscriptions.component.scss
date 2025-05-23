@@ -1,29 +1,39 @@
 @use '../../../styles/variables.scss';
 
-.form-container{
+.form-container {
     display: flex;
     align-items: center;
     padding: 20rem;
-    
+
 }
- input{
+
+input {
 
     &::placeholder {
         color: rgba(0, 0, 0, 0.5);
     }
- }
+}
 
- .ver-nome-3{
+.button-wrapper {
     margin-right: 0.5rem;
     padding-bottom: 0.2rem;
+    margin-top: 0.3rem;
 
-    .button-create{
+    .button-create {
         background-color: variables.$secondary-color;
         padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+            background-color: #14532d;
+        }
     }
- }
+}
 
- .form-wrapper{
+.form-wrapper {
     padding: 0.5rem;
- }
-
+}
