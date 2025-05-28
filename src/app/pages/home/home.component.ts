@@ -7,7 +7,7 @@ import { Subscriptions } from '../../model/subscriptions';
 import { SubscriptionsService } from '../../services/subscriptions.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-import { SideMenuComponent } from '../../componenents/side-menu/side-menu.component';
+import { SideMenuComponent } from '../../components/side-menu/side-menu.component';
 
 @Component({
   selector: 'app-home',

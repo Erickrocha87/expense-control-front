@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SideMenuComponent } from '../../componenents/side-menu/side-menu.component';
+import { SideMenuComponent } from '../../components/side-menu/side-menu.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataUserService } from '../../services/data-user.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -113,10 +113,14 @@ export class UserDataComponent {
         return;
       }
       console.log('Dados do usuário:', this.originalDataUser);
-
+      
       if(dataForm.email.trim() !== this.originalDataUser.email.trim()){
-        confirm(
+        const confirmed = confirm(
           'Você alterou seu email, para continuar você precisa fazer login novamente')
+        if (!confirmed) {
+          this.toastr.info('Nenhum dado foi alterado');
+          return;
+        }
         this.updateUser(updatedFields);
         this.authService.logout();
       } else{

@@ -9,7 +9,7 @@ import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ForgetPasswordComponent } from "../../compoments/forget-password/forget-password.component";
+import { ForgetPasswordComponent } from "../../components/forget-password/forget-password.component";
 
 @Component({
   selector: 'app-login',
