@@ -27,12 +27,16 @@
                     <div class="password-container">
                         <label for="password">Senha</label>
                         <input type="password" placeholder="Digite sua senha" formControlName="password">
-                        <small class="error-container"
-                            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                            Minimo 8 caracteres
-                        </small>
-
+                        <div class="forgot-password-container">
+                            <small class="error-container"
+                                *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                                Minimo 8 caracteres
+                            </small>
+                            <span class="forgot-password" (click)="openForgotModel()">Esqueceu sua senha?</span>
+                        </div>
                     </div>
+
+
 
                 </form>
             </div>
@@ -48,10 +52,12 @@
                 <button class="register-button"> <a routerLink="/cadastro">Cadastrar</a></button>
             </div>
         </div>
+
     </section>
-
-
     <section class="main-section">
+        <div *ngIf="showForgotPasswordModel" class="overlay">
+            <app-forget-password (closed)="closeForgotModel()"></app-forget-password>
+        </div>
         <img src="assets/images/background-login.png" alt="Imagem que vai ficar no background">
     </section>
 </main>

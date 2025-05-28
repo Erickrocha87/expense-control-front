@@ -9,16 +9,19 @@ import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ForgetPasswordComponent } from "../../compoments/forget-password/forget-password.component";
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink, CommonModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, ForgetPasswordComponent],
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+
+  showForgotPasswordModel = false;
 
   constructor(
     private loginService: LoginService,
@@ -46,5 +49,13 @@ export class LoginComponent {
           error: () => this.toastr.error('Erro ao realizar login'),
         });
     }
+  }
+
+  openForgotModel(){
+    this.showForgotPasswordModel = true;
+  }
+
+  closeForgotModel(){
+    this.showForgotPasswordModel = false;
   }
 }

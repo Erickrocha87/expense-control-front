@@ -178,7 +178,6 @@ main {
 }
 
 .error-container {
-    position: absolute;
     bottom: -1.2rem;
     left: 0;
     color: red;
@@ -189,4 +188,34 @@ main {
 .error-container.visible {
     visibility: visible;
     opacity: 1;
+}
+
+.forgot-password-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 5.5rem;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.2);
+    
+
+    app-forget-password {
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        z-index: 20;
+    }
+}
+
+.main-section {
+    position: relative; 
 }
